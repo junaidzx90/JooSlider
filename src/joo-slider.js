@@ -55,6 +55,9 @@ class JooSlider {
 
         position = jQuery(slider).find('.current').attr('data-pos');
         jQuery(slider).animate({ left: -position + '%' }, obj.speed);
+        if (document.fullscreenElement) {
+          jQuery(slider).find('.current').css("background-size", "contain");
+        }
       }
     });
 
@@ -68,6 +71,9 @@ class JooSlider {
 
         position = jQuery(slider).find('.current').attr('data-pos');
         jQuery(slider).animate({ left: -position + '%' }, obj.speed);
+        if (document.fullscreenElement) {
+          jQuery(slider).find('.current').css("background-size", "contain");
+        }
       }
     });
 
@@ -76,17 +82,15 @@ class JooSlider {
       let imgUrl = jQuery(slider)
         .find("[data-pos='" + itemPos2 + "']")
         .attr('data-url');
-      jQuery(obj.thumbnails).append(
-        `<li data-pos="${itemPos2}" class="thumb"><img src="${imgUrl}"></li>`
-      );
-      itemPos2 += 100;
+        if(length > th){
+          jQuery(obj.thumbnails).append(
+              `<li data-pos="${itemPos2}" class="thumb"><img src="${imgUrl}"></li>`
+          );
+          itemPos2 += 100;
+      }
     }
 
-    if (length > thumbSize) {
-      jQuery(obj.thumbnails).append(
-        `<li class="zoombtn zoom"><svg class="zoom" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px" viewBox="0 0 24 24"><path fill="currentColor" d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"></path></svg></li>`
-      );
-    }
+    jQuery(obj.thumbnails).children("li").last().append(`<span class="zoom"><svg class="zoom" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px" viewBox="0 0 24 24"><path fill="currentColor" d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"></path></svg></span>`)
 
     jQuery(thumb).on('click', function () {
       let thumbPos = jQuery(this).attr('data-pos');
@@ -100,12 +104,11 @@ class JooSlider {
       }
     });
 
-    jQuery(document).on('click', function (e) {
-      if (jQuery(e.target).hasClass(zoombtn)) {
-        jQuery('.' + zoombtn).hide();
-        jQuery(closeZoom).css('display', 'flex');
-        obj.openFullscreen(jQuery(wrapper)[0]);
-      }
+    jQuery(document).on('click', "."+zoombtn, function (e) {
+      jQuery(closeZoom).css('display', 'flex');
+      jQuery('.zoom_wrapper').hide();
+      jQuery(slider).find('.current').css("background-size", "contain");
+      obj.openFullscreen(jQuery(wrapper)[0]);
     });
 
     jQuery(closeZoom).on('click', function () {
@@ -127,18 +130,21 @@ class JooSlider {
   closeFullscreen() {
     if (document.fullscreenElement ) {
       document.exitFullscreen();
-      jQuery('.' + this.zoombtn).show();
+      jQuery('.zoom_wrapper').show();
       jQuery(this.closeScreen).hide();
+      jQuery(slider).find('.current').css("background-size", "cover");
     } else if (document.webkitExitFullscreen) {
       /* Safari */
       document.webkitExitFullscreen();
-      jQuery('.' + this.zoombtn).show();
+      jQuery('.zoom_wrapper').show();
       jQuery(this.closeScreen).hide();
+      jQuery(slider).find('.current').css("background-size", "cover");
     } else if (document.msExitFullscreen) {
       /* IE11 */
       document.msExitFullscreen();
-      jQuery('.' + this.zoombtn).show();
+      jQuery('.zoom_wrapper').show();
       jQuery(this.closeScreen).hide();
+      jQuery(slider).find('.current').css("background-size", "cover");
     }
   }
 }
