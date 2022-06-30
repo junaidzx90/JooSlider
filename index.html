@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joo-Slider - Developed by junaidzx90</title>
+    <link rel="stylesheet" href="src/joo-slider.min.css">
+</head>
+
+<body>
+    <div id="slider_container">
+        <div id="slider">
+            <div class="slider_inner">
+                <div class="carousel-item" data-url="https://picsum.photos/200"
+                    style="background-image: url(https://picsum.photos/200)"></div>
+                <div class="carousel-item" data-url="https://picsum.photos/201"
+                    style="background-image: url(https://picsum.photos/201)"></div>
+                <div class="carousel-item" data-url="https://picsum.photos/202"
+                    style="background-image: url(https://picsum.photos/202)"></div>
+                <div class="carousel-item" data-url="https://picsum.photos/203"
+                    style="background-image: url(https://picsum.photos/203)"></div>
+                <div class="carousel-item" data-url="https://picsum.photos/204"
+                    style="background-image: url(https://picsum.photos/204)"></div>
+                <div class="carousel-item" data-url="https://picsum.photos/205"
+                    style="background-image: url(https://picsum.photos/205)"></div>
+                <div class="carousel-item" data-url="https://picsum.photos/206"
+                    style="background-image: url(https://picsum.photos/206)"></div>
+                <div class="carousel-item" data-url="https://picsum.photos/207"
+                    style="background-image: url(https://picsum.photos/207)"></div>
+            </div>
+
+            <div class="closeFullscreen">
+                <span>+</span>
+            </div>
+
+            <div class="zoom_wrapper zoom">
+                <div class="zoom_btn zoom">
+                    <svg class="zoom" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px"
+                        viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="slider_prev nextprevbtn">
+                <span class="icon-left-open"></span>
+            </div>
+            <div class="slider_next nextprevbtn">
+                <span class="icon-right-open"></span>
+            </div>
+        </div>
+
+        <div id="slider_list" class="slider_list">
+            <ul class="thumbnails"></ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="src/joo-slider.min.js"></script>
+    <script src="src/index.js"></script>
+</body>
+
+</html>
